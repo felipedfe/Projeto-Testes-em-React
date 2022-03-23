@@ -6,6 +6,7 @@ import App from '../App';
 const { screen } = require('@testing-library/react');
 
 const POKEMON_NAME_ID = 'pokemon-name';
+const POKEMON_TYPE_ID = 'pokemon-type';
 
 test('Se a página contém um heading h2 com o texto Encountered pokémons.', () => {
   renderWithRouter(<App />);
@@ -79,12 +80,12 @@ test('Se a Pokédex tem os botões de filtro.', () => {
   // clicando em um filtro
   expect(psychicButton[0]).toHaveTextContent(/Psychic/i);
   userEvent.click(psychicButton[0]);
-  const firstPsychic = screen.getByTestId('pokemon-type');
+  const firstPsychic = screen.getByTestId(POKEMON_TYPE_ID);
   expect(firstPsychic).toHaveTextContent(/Psychic/i);
   const nextButton = screen.getByRole('button', { name: /Próximo pokémon/i });
   // clicando em `próximo pokémon` dentro do filtro
   userEvent.click(nextButton);
-  const secondPsychic = screen.getByTestId('pokemon-type');
+  const secondPsychic = screen.getByTestId(POKEMON_TYPE_ID);
   expect(secondPsychic).toHaveTextContent(/Psychic/i);
   expect(allButton).toBeInTheDocument();
 });
@@ -95,10 +96,10 @@ test('Se a Pokédex contém um botão para resetar o filtro.', () => {
   expect(allButton).toHaveTextContent(/All/i);
 
   userEvent.click(allButton);
-  const pokemonOnScreenType1 = screen.getByTestId('pokemon-type');
+  const pokemonOnScreenType1 = screen.getByTestId(POKEMON_TYPE_ID);
   expect(pokemonOnScreenType1).toHaveTextContent('Electric');
   const nextButton = screen.getByRole('button', { name: /Próximo pokémon/i });
   userEvent.click(nextButton);
-  const pokemonOnScreenType2 = screen.getByTestId('pokemon-type');
+  const pokemonOnScreenType2 = screen.getByTestId(POKEMON_TYPE_ID);
   expect(pokemonOnScreenType2).toHaveTextContent('Fire');
 });
