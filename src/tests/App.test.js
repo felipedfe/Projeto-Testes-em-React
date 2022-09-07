@@ -16,9 +16,6 @@ describe('Testando o componente <App.js />', () => {
 
     const favoritesLink = screen.getByRole('link', { name: 'Favorite Pokémons' });
     expect(favoritesLink).toBeInTheDocument();
-
-    // const numberOfLinks = screen.getAllByRole('link');
-    // expect(numberOfLinks).toHaveLength(3);
   });
 
   test('Se ao clicar em `Home` a aplicação vai para a página inicial', () => {
